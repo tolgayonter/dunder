@@ -1,11 +1,6 @@
-<div class="container">
-  <div
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-  >
-    <a
-      href="/"
-      class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-    >
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">
       <!-- <svg
         class="bi me-2"
         width="40"
@@ -18,21 +13,34 @@
       DM
     </a>
 
-    <ul
-      class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-    >
-      <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-      <!-- <li><a href="#" class="nav-link px-2 text-white">Features</a></li> -->
-      <!-- <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li> -->
-      <!-- <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li> -->
-      <li>
+    <!-- class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
         <a
-          href="#"
-          class="nav-link px-2 text-white"
-          *ngIf="accountService.currentUser$ | async"
-          >About</a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
         >
       </li>
+      <ng-container *ngIf="accountService.currentUser$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+            >Members</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >List</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Messages</a
+          >
+        </li>
+      </ng-container>
     </ul>
 
     <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -65,18 +73,17 @@
         type="password"
         placeholder="Password"
       />
-      <button type="submit" class="btn btn-outline-light me-2">Login</button>
+      <button type="submit" class="btn btn-primary my-2 my-sm-0">Login</button>
       <!-- <button type="button" class="btn btn-warning">Signup</button> -->
     </form>
 
     <div
       dropdown
       class="dropdown text-end"
-      *ngIf="accountService.currentUser$ | async"
+      *ngIf="accountService.currentUser$ | async as user"
     >
       <a
         dropdownToggle
-        href="#"
         class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
         data-bs-toggle="dropdown"
         aria-expanded="false"
@@ -97,4 +104,4 @@
       </ul>
     </div>
   </div>
-</div>
+</nav>
