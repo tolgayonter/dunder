@@ -14,6 +14,7 @@ namespace API.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
+
         public UsersController(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
