@@ -26,7 +26,11 @@
       </li>
       <ng-container *ngIf="accountService.currentUser$ | async">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+          <a
+            class="nav-link"
+            routerLink="/members"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
             >Members</a
           >
         </li>
