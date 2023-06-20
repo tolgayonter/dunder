@@ -34,6 +34,7 @@ app.UseAuthorization(); // okay you have a valid token, now what are you allowed
 
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");
+app.MapHub<MessageHub>("hubs/message");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
