@@ -1,5 +1,8 @@
 <div class="text-center mt-3">
-  <h2>Your matches - {{ pagination?.totalItems }} found</h2>
+  <h2>
+    Meet Our Paper People: {{ pagination?.totalItems || 0 }} Members in Dunder
+    Mifflin Infinity!
+  </h2>
 </div>
 
 <div class="container mt-3" *ngIf="userParams">
@@ -9,7 +12,7 @@
     (ngSubmit)="loadMembers()"
     autocomplete="off"
   >
-    <div class="d-flex mx-2">
+    <!-- <div class="d-flex mx-2">
       <label class="col-form-label">Age from: </label>
       <input
         type="number"
@@ -42,15 +45,16 @@
           {{ gender.display }}
         </option>
       </select>
-    </div>
+    </div> -->
 
-    <button class="btn btn-primary ms-1" type="submit">Apply Filters</button>
+    <!-- <button class="btn btn-primary ms-1" type="submit">Apply Filters</button>
     <button (click)="resetFilters()" class="btn btn-primary ms-1" type="submit">
       Reset Filters
-    </button>
+    </button> -->
 
     <div class="col">
-      <div class="btn-group float-end">
+      <!-- <div class="btn-group float-end"> -->
+      <div class="btn-group">
         <button
           type="button"
           class="btn btn-primary"
@@ -66,7 +70,7 @@
           class="btn btn-primary"
           name="orderBy"
           [(ngModel)]="userParams.orderBy"
-          btnRadio="created"
+          btnRadio="joined"
           (click)="loadMembers()"
         >
           Newest Members

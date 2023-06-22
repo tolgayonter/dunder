@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using API.Helpers;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace API.Extensions;
 

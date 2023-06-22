@@ -6,12 +6,9 @@ export interface Member {
   photoUrl: string;
   age: number;
   knownAs: string;
-  created: Date;
+  joined: Date;
   lastActive: Date;
-  gender: string;
-  introduction: string;
-  lookingFor: string;
-  interests: string;
+  bio: string;
   city: string;
   country: string;
   photos: Photo[];

@@ -477,5 +477,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # (ty)
-API/appsettings.json
+api/appsettings.json
 ssl/

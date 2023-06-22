@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a
+      class="navbar-brand"
+      [href]="(accountService.currentUser$ | async) ? '/members' : '/'"
+    >
       <!-- <svg
         class="bi me-2"
         width="40"
@@ -15,7 +18,7 @@
 
     <!-- class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a
           class="nav-link"
           routerLink="/"
@@ -23,7 +26,7 @@
           [routerLinkActiveOptions]="{ exact: true }"
           >Home</a
         >
-      </li>
+      </li> -->
       <ng-container *ngIf="accountService.currentUser$ | async">
         <li class="nav-item">
           <a
@@ -36,7 +39,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/lists" routerLinkActive="active"
-            >List</a
+            >Likes</a
           >
         </li>
         <li class="nav-item">
@@ -106,8 +109,10 @@
         />
       </a>
       <ul *dropdownMenu class="dropdown-menu text-small">
-        <li><a class="dropdown-item">Settings</a></li>
-        <li><a routerLink="/member/edit" class="dropdown-item">Profile</a></li>
+        <!-- <li><a class="dropdown-item">Settings</a></li> -->
+        <li>
+          <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
+        </li>
         <li><hr class="dropdown-divider" /></li>
         <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
       </ul>

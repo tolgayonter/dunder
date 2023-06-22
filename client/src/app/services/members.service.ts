@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Member } from '../models/member';
 import { map, of, take } from 'rxjs';
-import { PaginatedResult } from '../models/pagination';
 import { UserParams } from '../models/userParams';
 import { AccountService } from './account.service';
 import { User } from '../models/user';
@@ -27,7 +26,7 @@ export class MembersService {
     this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: (user) => {
         if (user) {
-          this.userParams = new UserParams(user);
+          this.userParams = new UserParams();
           this.user = user;
         }
       },
@@ -44,7 +43,7 @@ export class MembersService {
 
   resetUserParams() {
     if (this.user) {
-      this.userParams = new UserParams(this.user);
+      this.userParams = new UserParams();
       return this.userParams;
     }
     return;
@@ -60,9 +59,9 @@ export class MembersService {
       userParams.pageSize
     );
 
-    params = params.append('minAge', userParams.minAge);
-    params = params.append('maxAge', userParams.maxAge);
-    params = params.append('gender', userParams.gender);
+    // params = params.append('minAge', userParams.minAge);
+    // params = params.append('maxAge', userParams.maxAge);
+    // params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
     return getPaginatedResult<Member[]>(

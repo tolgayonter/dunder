@@ -11,9 +11,9 @@ namespace API.SignalR;
 [Authorize]
 public class MessageHub : Hub
 {
-    private readonly IUnitOfWork _uow;
-    private readonly IHubContext<PresenceHub> _presenceHub;
     private readonly IMapper _mapper;
+    private readonly IHubContext<PresenceHub> _presenceHub;
+    private readonly IUnitOfWork _uow;
 
     public MessageHub(IUnitOfWork uow, IMapper mapper, IHubContext<PresenceHub> presenceHub)
     {
@@ -64,7 +64,7 @@ public class MessageHub : Hub
             Recipient = recipient,
             SenderUsername = sender.UserName,
             RecipientUsername = recipient.UserName,
-            Content = createMessageDto.Content,
+            Content = createMessageDto.Content
         };
 
         var groupName = GetGroupName(sender.UserName, recipient.UserName);
@@ -79,18 +79,14 @@ public class MessageHub : Hub
         {
             var connections = await PresenceTracker.GetConnectionsForUser(recipient.UserName);
             if (connections != null)
-            {
                 await _presenceHub.Clients.Clients(connections).SendAsync("NewMessageReceived",
                     new { username = sender.UserName, knownAs = sender.KnownAs });
-            }
         }
 
         _uow.MessageRepository.AddMessage(message);
 
         if (await _uow.Complete())
-        {
             await Clients.Group(groupName).SendAsync("NewMessage", _mapper.Map<MessageDto>(message));
-        }
     }
 
     private string GetGroupName(string caller, string other)

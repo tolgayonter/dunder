@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
-    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -35,7 +34,6 @@ export class RegisterComponent implements OnInit {
 
   initializeForm() {
     this.registerForm = this.fb.group({
-      gender: ['male'],
       username: ['', Validators.required],
       knownAs: ['', Validators.required],
       dateOfBirth: ['', Validators.required],

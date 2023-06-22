@@ -10,8 +10,8 @@ namespace API.Controllers;
 
 public class MessagesController : BaseApiController
 {
-    private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
+    private readonly IUnitOfWork _uow;
 
     public MessagesController(IUnitOfWork uow, IMapper mapper)
     {
@@ -38,7 +38,7 @@ public class MessagesController : BaseApiController
             Recipient = recipient,
             SenderUsername = sender.UserName,
             RecipientUsername = recipient.UserName,
-            Content = createMessageDto.Content,
+            Content = createMessageDto.Content
         };
 
         _uow.MessageRepository.AddMessage(message);
@@ -72,10 +72,7 @@ public class MessagesController : BaseApiController
         if (message.SenderUsername == username) message.SenderDeleted = true;
         if (message.RecipientUsername == username) message.RecipientDeleted = true;
 
-        if (message.SenderDeleted && message.RecipientDeleted)
-        {
-            _uow.MessageRepository.DeleteMessage(message);
-        }
+        if (message.SenderDeleted && message.RecipientDeleted) _uow.MessageRepository.DeleteMessage(message);
 
         if (await _uow.Complete()) return Ok();
 
