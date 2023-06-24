@@ -30,6 +30,8 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.router.navigateByUrl('/');
+
+    // this is not great, it goes against the nature of SPA's.
+    this.router.navigateByUrl('/').then(() => window.location.reload());
   }
 }
