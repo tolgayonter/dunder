@@ -1,0 +1,82 @@
+[
+  {
+    "UserName": "ryan",
+    "KnownAs": "Ryan Howard",
+    "DateOfBirth": "1988-11-14",
+    "Joined": "2023-02-10",
+    "LastActive": "2023-06-22",
+    "Bio": "Vp.",
+    "City": "Scranton",
+    "Country": "USA",
+    "Photos": [
+      {
+        "Url": "./assets/ryan-howard.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "jimbeesly",
+    "KnownAs": "Jim Halpert",
+    "DateOfBirth": "1985-10-01",
+    "Joined": "2023-01-15",
+    "LastActive": "2023-06-20",
+    "Bio": "Salesman at Dunder Mifflin Scranton Branch. Always looking out for the next big thing in paper.",
+    "City": "Scranton",
+    "Country": "USA",
+    "Photos": [
+      {
+        "Url": "./assets/jim-halpert.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "dwightschrute",
+    "KnownAs": "Dwight Schrute",
+    "DateOfBirth": "1980-01-20",
+    "Joined": "2023-01-01",
+    "LastActive": "2023-06-22",
+    "Bio": "Assistant Regional Manager at Dunder Mifflin. Beet farmer and volunteer Sheriff's deputy in spare time. Hard-working, alpha male, jackhammer... merciless. Expert in martial arts, and Battlestar Galactica.",
+    "City": "Scranton",
+    "Country": "USA",
+    "Photos": [
+      {
+        "Url": "./assets/dwight-schrute.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "michaelscarn",
+    "KnownAs": "Michael Scott",
+    "DateOfBirth": "1968-03-15",
+    "Joined": "2023-02-10",
+    "LastActive": "2023-06-22",
+    "Bio": "Regional Manager of Dunder Mifflin. I'm not superstitious, but I am a little stitious.",
+    "City": "Scranton",
+    "Country": "USA",
+    "Photos": [
+      {
+        "Url": "./assets/michael-scott.jpg",
+        "IsMain": true
+      }
+    ]
+  },
+  {
+    "UserName": "pambeesly",
+    "KnownAs": "Pam Beesly",
+    "DateOfBirth": "1986-03-25",
+    "Joined": "2023-01-20",
+    "LastActive": "2023-06-21",
+    "Bio": "Office Administrator at Dunder Mifflin. Aspiring artist.",
+    "City": "Scranton",
+    "Country": "USA",
+    "Photos": [
+      {
+        "Url": "./assets/pam-beesly.jpg",
+        "IsMain": true
+      }
+    ]
+  }
+]
