@@ -76,6 +76,6 @@ public class MessagesController : BaseApiController
 
         if (await _uow.Complete()) return Ok();
 
-        return BadRequest("Problem deleting the message");
+        return BadRequest("Failed to delete message");
     }
 }

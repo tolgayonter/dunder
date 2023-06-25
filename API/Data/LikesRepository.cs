@@ -16,7 +16,7 @@ public class LikesRepository : ILikesRepository
         _context = context;
     }
 
-    public async Task<UserLike> GetUserLike(int sourceUserId, int targetUserId)
+    public async Task<UserLike> GetLike(int sourceUserId, int targetUserId)
     {
         return await _context.Likes.FindAsync(sourceUserId, targetUserId);
     }
@@ -28,7 +28,7 @@ public class LikesRepository : ILikesRepository
             .FirstOrDefaultAsync(x => x.Id == userId);
     }
 
-    public async Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams)
+    public async Task<PagedList<LikeDto>> GetLikes(LikesParams likesParams)
     {
         var users = _context.Users.OrderBy(u => u.UserName).AsQueryable();
         var likes = _context.Likes.AsQueryable();

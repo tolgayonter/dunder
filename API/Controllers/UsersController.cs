@@ -83,7 +83,7 @@ public class UsersController : BaseApiController
             return CreatedAtAction(nameof(GetUser), new { username = user.UserName },
                 _mapper.Map<PhotoDto>(photo));
 
-        return BadRequest("Problem adding photo");
+        return BadRequest("Failed to add photo");
     }
 
     [HttpPut("set-main-photo/{photoId}")]
@@ -105,7 +105,7 @@ public class UsersController : BaseApiController
 
         if (await _uow.Complete()) return NoContent();
 
-        return BadRequest("Problem setting the main photo");
+        return BadRequest("Failed to set main photo");
     }
 
     [HttpDelete("delete-photo/{photoId}")]
@@ -129,6 +129,6 @@ public class UsersController : BaseApiController
 
         if (await _uow.Complete()) return Ok();
 
-        return BadRequest("Problem deleting photo");
+        return BadRequest("Failed to delete photo");
     }
 }

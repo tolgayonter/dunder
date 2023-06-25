@@ -27,7 +27,7 @@ public class LikesController : BaseApiController
 
         if (sourceUser.UserName == username) return BadRequest("You cannot like yourself");
 
-        var userLike = await _uow.LikesRepository.GetUserLike(sourceUserId, likedUser.Id);
+        var userLike = await _uow.LikesRepository.GetLike(sourceUserId, likedUser.Id);
 
         if (userLike != null) return BadRequest("You already like this user");
 
@@ -45,11 +45,11 @@ public class LikesController : BaseApiController
     }
 
     [HttpGet]
-    public async Task<ActionResult<PagedList<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
+    public async Task<ActionResult<PagedList<LikeDto>>> GetLikes([FromQuery] LikesParams likesParams)
     {
         likesParams.UserId = User.GetUserId();
 
-        var users = await _uow.LikesRepository.GetUserLikes(likesParams);
+        var users = await _uow.LikesRepository.GetLikes(likesParams);
 
         Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount,
             users.TotalPages));

@@ -11,7 +11,15 @@ public static class IdentityServiceExtensions
 {
     public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
     {
-        services.AddIdentityCore<User>(opt => { opt.Password.RequireNonAlphanumeric = false; })
+        services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequiredLength = 4;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireLowercase = false;
+                
+            })
             .AddRoles<Role>()
             .AddRoleManager<RoleManager<Role>>()
             .AddEntityFrameworkStores<DataContext>();

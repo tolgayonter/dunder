@@ -1,7 +1,8 @@
 <div class="row" *ngIf="member">
   <div class="col-4">
-    <h1>Your profile</h1>
+    <h1>Your Profile</h1>
   </div>
+
   <div class="col-8">
     <div class="alert alert-info pb-1" *ngIf="editForm.dirty">
       <p>
@@ -10,6 +11,7 @@
       </p>
     </div>
   </div>
+
   <div class="col-4">
     <div class="card">
       <img
@@ -20,7 +22,15 @@
       <div class="card-body">
         <div>
           <strong>Location:</strong>
-          <p>{{ member.city }}, {{ member.country }}</p>
+          <p>
+            {{
+              member.city || member.country
+                ? (member.city
+                    ? member.city + (member.country ? ", " : "")
+                    : "") + (member.country || "")
+                : ""
+            }}
+          </p>
         </div>
         <div>
           <strong>Age:</strong>
@@ -59,21 +69,7 @@
             name="introduction"
             rows="6"
           ></textarea>
-          <!-- <h4 class="mt-2">Looking for</h4>
-          <textarea
-            class="form-control"
-            [(ngModel)]="member.lookingFor"
-            name="lookingFor"
-            rows="6"
-          ></textarea>
-          <h4 class="mt-2">Interests</h4>
-          <textarea
-            class="form-control"
-            [(ngModel)]="member.interests"
-            name="interests"
-            rows="6"
-          ></textarea> -->
-          <h4 class="mt-2">Location details:</h4>
+          <h4 class="mt-2">Location</h4>
           <div class="d-flex flex-row align-items-center">
             <label for="city">City: </label>
             <input
@@ -92,7 +88,7 @@
           </div>
         </form>
       </tab>
-      <tab heading="Edit photos">
+      <tab heading="Edit Photos">
         <app-photo-editor [member]="member"></app-photo-editor>
       </tab>
     </tabset>
