@@ -25,9 +25,9 @@ export class UserManagementComponent implements OnInit {
   }
 
   getUsersWithRoles() {
-    this.adminService.getUsersWithRoles().subscribe({
-      next: (users) => (this.users = users),
-    });
+    this.adminService
+      .getUsersWithRoles()
+      .subscribe((users) => (this.users = users));
   }
 
   openRolesModal(user: User) {
@@ -40,17 +40,13 @@ export class UserManagementComponent implements OnInit {
       },
     };
     this.bsModalRef = this.modalService.show(RolesModalComponent, config);
-    this.bsModalRef.onHide?.subscribe({
-      next: () => {
-        const selectedRoles = this.bsModalRef.content?.selectedRoles;
-        if (!this.arrayEqual(selectedRoles!, user.roles)) {
-          this.adminService
-            .updateUserRoles(user.username, selectedRoles!)
-            .subscribe({
-              next: (roles) => (user.roles = roles),
-            });
-        }
-      },
+    this.bsModalRef.onHide?.subscribe(() => {
+      const selectedRoles = this.bsModalRef.content?.selectedRoles;
+      if (!this.arrayEqual(selectedRoles!, user.roles)) {
+        this.adminService
+          .updateUserRoles(user.username, selectedRoles!)
+          .subscribe((roles) => (user.roles = roles));
+      }
     });
   }
 

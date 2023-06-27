@@ -42,24 +42,20 @@ export class MessageService {
 
     this.hubConnection.on('UpdatedGroup', (group: Group) => {
       if (group.connections.some((x) => x.username === otherUsername)) {
-        this.messageThread$.pipe(take(1)).subscribe({
-          next: (messages) => {
-            messages.forEach((message) => {
-              if (!message.dateRead) {
-                message.dateRead = new Date(Date.now());
-              }
-            });
-            this.messageThreadSource.next([...messages]);
-          },
+        this.messageThread$.pipe(take(1)).subscribe((messages) => {
+          messages.forEach((message) => {
+            if (!message.dateRead) {
+              message.dateRead = new Date(Date.now());
+            }
+          });
+          this.messageThreadSource.next([...messages]);
         });
       }
     });
 
     this.hubConnection.on('NewMessage', (message) => {
-      this.messageThread$.pipe(take(1)).subscribe({
-        next: (messages) => {
-          this.messageThreadSource.next([...messages, message]);
-        },
+      this.messageThread$.pipe(take(1)).subscribe((messages) => {
+        this.messageThreadSource.next([...messages, message]);
       });
     });
   }

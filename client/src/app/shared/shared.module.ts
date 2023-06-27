@@ -23,9 +23,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       positionClass: 'toast-bottom-right',
     }),
     NgxGalleryModule,
-    NgxSpinnerModule.forRoot({
-      type: 'square-loader',
-    }),
+    NgxSpinnerModule.forRoot(),
     FileUploadModule,
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),

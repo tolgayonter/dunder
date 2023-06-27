@@ -29,17 +29,19 @@ export class PresenceService {
     this.hubConnection.start().catch((error) => console.log(error));
 
     this.hubConnection.on('UserIsOnline', (username) => {
-      this.onlineUsers$.pipe(take(1)).subscribe({
-        next: (usernames) =>
-          this.onlineUsersSource.next([...usernames, username]),
-      });
+      this.onlineUsers$
+        .pipe(take(1))
+        .subscribe((usernames) =>
+          this.onlineUsersSource.next([...usernames, username])
+        );
     });
 
     this.hubConnection.on('UserIsOffline', (username) => {
-      this.onlineUsers$.pipe(take(1)).subscribe({
-        next: (usernames) =>
-          this.onlineUsersSource.next(usernames.filter((x) => x !== username)),
-      });
+      this.onlineUsers$
+        .pipe(take(1))
+        .subscribe((usernames) =>
+          this.onlineUsersSource.next(usernames.filter((x) => x !== username))
+        );
     });
 
     this.hubConnection.on('GetOnlineUsers', (usernames) => {
@@ -50,10 +52,9 @@ export class PresenceService {
       this.toastr
         .info(knownAs + ' has sent you a new message! Click me to see it')
         .onTap.pipe(take(1))
-        .subscribe({
-          next: () =>
-            this.router.navigateByUrl('/members/' + username + '?tab=Messages'),
-        });
+        .subscribe(() =>
+          this.router.navigateByUrl('/members/' + username + '?tab=Messages')
+        );
     });
   }
 

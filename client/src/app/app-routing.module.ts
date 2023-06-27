@@ -28,7 +28,7 @@ const routes: Routes = [
         resolve: { member: memberDetailedResolver },
       },
       {
-        path: 'member/edit', // that's tricky right here. member instead of members.
+        path: 'member/edit', // member instead of members
         component: MemberEditComponent,
         canDeactivate: [preventUnsavedChangesGuard],
       },
@@ -43,7 +43,7 @@ const routes: Routes = [
   },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
-  { path: '**', component: NotFoundComponent, pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

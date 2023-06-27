@@ -49,10 +49,9 @@ export class RegisterComponent implements OnInit {
       ],
       confirmPassword: ['', [Validators.required, this.matchValue('password')]],
     });
-    this.registerForm.controls['password'].valueChanges.subscribe({
-      next: () =>
-        this.registerForm.controls['confirmPassword'].updateValueAndValidity(),
-    });
+    this.registerForm.controls['password'].valueChanges.subscribe(() =>
+      this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    );
   }
 
   matchValue(matchTo: string): ValidatorFn {
@@ -69,12 +68,12 @@ export class RegisterComponent implements OnInit {
     );
     const values = { ...this.registerForm.value, dateOfBirth: dob };
 
-    this.accountService.register(values).subscribe({
-      next: () => {
+    this.accountService.register(values).subscribe(
+      () => {
         this.router.navigateByUrl('/members');
       },
-      error: (error) => (this.validationErrors = error),
-    });
+      (err) => (this.validationErrors = err)
+    );
   }
 
   cancel() {

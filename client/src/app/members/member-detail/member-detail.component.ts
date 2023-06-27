@@ -43,23 +43,17 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     public presenceService: PresenceService,
     private router: Router
   ) {
-    this.accountService.currentUser$.pipe(take(1)).subscribe({
-      next: (user) => {
-        if (user) this.user = user;
-      },
+    this.accountService.currentUser$.pipe(take(1)).subscribe((user) => {
+      if (user) this.user = user;
     });
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe({
-      next: (data) => (this.member = data['member']),
-    });
+    this.route.data.subscribe((data) => (this.member = data['member']));
 
-    this.route.queryParams.subscribe({
-      next: (params) => {
-        params['tab'] && this.selectTab(params['tab']);
-      },
+    this.route.queryParams.subscribe((params) => {
+      params['tab'] && this.selectTab(params['tab']);
     });
 
     this.galleryOptions = [
@@ -96,9 +90,9 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   loadMessages() {
     if (this.member) {
-      this.messageService.getMessageThread(this.member.userName).subscribe({
-        next: (messages) => (this.messages = messages),
-      });
+      this.messageService
+        .getMessageThread(this.member.userName)
+        .subscribe((messages) => (this.messages = messages));
     }
   }
 

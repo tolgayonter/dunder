@@ -26,10 +26,8 @@ export class PhotoEditorComponent implements OnInit {
     private accountService: AccountService,
     private membersService: MembersService
   ) {
-    this.accountService.currentUser$.pipe(take(1)).subscribe({
-      next: (user) => {
-        if (user) this.user = user;
-      },
+    this.accountService.currentUser$.pipe(take(1)).subscribe((user) => {
+      if (user) this.user = user;
     });
   }
 
@@ -38,30 +36,24 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   setMainPhoto(photo: Photo) {
-    this.membersService.setMainPhoto(photo.id).subscribe({
-      next: () => {
-        if (this.user && this.member) {
-          this.user.photoUrl = photo.url;
-          this.accountService.setCurrentUser(this.user);
-          this.member.photoUrl = photo.url;
-          this.member.photos.forEach((p) => {
-            if (p.isMain) p.isMain = false;
-            if (p.id === photo.id) p.isMain = true;
-          });
-        }
-      },
+    this.membersService.setMainPhoto(photo.id).subscribe(() => {
+      if (this.user && this.member) {
+        this.user.photoUrl = photo.url;
+        this.accountService.setCurrentUser(this.user);
+        this.member.photoUrl = photo.url;
+        this.member.photos.forEach((p) => {
+          if (p.isMain) p.isMain = false;
+          if (p.id === photo.id) p.isMain = true;
+        });
+      }
     });
   }
 
   deletePhoto(photoId: number) {
-    this.membersService.deletePhoto(photoId).subscribe({
-      next: () => {
-        if (this.member) {
-          this.member.photos = this.member.photos.filter(
-            (x) => x.id !== photoId
-          );
-        }
-      },
+    this.membersService.deletePhoto(photoId).subscribe(() => {
+      if (this.member) {
+        this.member.photos = this.member.photos.filter((x) => x.id !== photoId);
+      }
     });
   }
 

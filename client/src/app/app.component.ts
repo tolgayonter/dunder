@@ -9,8 +9,6 @@ import { User } from './models/user';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'client';
-
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
