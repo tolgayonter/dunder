@@ -4,11 +4,11 @@ import { MembersService } from '../services/members.service';
 import { Pagination } from '../models/pagination';
 
 @Component({
-  selector: 'app-lists',
-  templateUrl: './lists.component.html',
-  styleUrls: ['./lists.component.scss'],
+  selector: 'app-likes',
+  templateUrl: './likes.component.html',
+  styleUrls: ['./likes.component.scss'],
 })
-export class ListsComponent implements OnInit {
+export class LikesComponent implements OnInit {
   members: Member[] | undefined;
   predicate = 'liked';
 

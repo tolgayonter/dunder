@@ -13,8 +13,6 @@ import { MembersService } from 'src/app/services/members.service';
   styleUrls: ['./member-list.component.scss'],
 })
 export class MemberListComponent implements OnInit {
-  // members$: Observable<Member[]> | undefined;
-
   members: Member[] = [];
 
   pagination: Pagination | undefined;
@@ -30,7 +28,6 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.members$ = this.memberService.getMembers();
     this.loadMembers();
   }
 
@@ -44,11 +41,6 @@ export class MemberListComponent implements OnInit {
         }
       });
     }
-  }
-
-  resetFilters() {
-    this.userParams = this.memberService.resetUserParams();
-    this.loadMembers();
   }
 
   pageChanged(event: any) {

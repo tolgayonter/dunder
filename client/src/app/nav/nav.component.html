@@ -4,29 +4,10 @@
       class="navbar-brand"
       [href]="(accountService.currentUser$ | async) ? '/members' : '/'"
     >
-      <!-- <svg
-        class="bi me-2"
-        width="40"
-        height="32"
-        role="img"
-        aria-label="Bootstrap"
-      >
-        <use xlink:href="#bootstrap"></use>
-      </svg> -->
       DM
     </a>
 
-    <!-- class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <!-- <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Home</a
-        >
-      </li> -->
       <ng-container *ngIf="accountService.currentUser$ | async">
         <li class="nav-item">
           <a
@@ -38,7 +19,7 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+          <a class="nav-link" routerLink="/likes" routerLinkActive="active"
             >Likes</a
           >
         </li>
@@ -54,15 +35,6 @@
         </li>
       </ng-container>
     </ul>
-
-    <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-      <input
-        type="search"
-        class="form-control form-control-dark text-bg-dark"
-        placeholder="Search..."
-        aria-label="Search"
-      />
-    </form> -->
 
     <form
       #loginForm
@@ -86,7 +58,6 @@
         placeholder="Password"
       />
       <button type="submit" class="btn btn-primary my-2 my-sm-0">Login</button>
-      <!-- <button type="button" class="btn btn-warning">Signup</button> -->
     </form>
 
     <div
@@ -109,7 +80,6 @@
         />
       </a>
       <ul *dropdownMenu class="dropdown-menu text-small">
-        <!-- <li><a class="dropdown-item">Settings</a></li> -->
         <li>
           <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
         </li>
